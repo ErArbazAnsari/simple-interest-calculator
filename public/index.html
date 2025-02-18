@@ -86,7 +86,7 @@
                         alert("all fields are required");
                     }
                     const response = await fetch(
-                        `http://localhost:3000/get-si?principle=${principle}&rate=${rate}&time=${time}`
+                        `https://simple-interest-calculator.onrender.com/get-si?principle=${principle}&rate=${rate}&time=${time}`
                     );
 
                     const finalAns = await response.text();
