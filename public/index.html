@@ -24,6 +24,7 @@
                         id="principle"
                         placeholder="Enter principle amount"
                         class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+                        required
                     />
                 </div>
                 <div>
@@ -38,6 +39,7 @@
                         id="rate"
                         placeholder="Enter rate of interest"
                         class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+                        required
                     />
                 </div>
                 <div>
@@ -52,6 +54,7 @@
                         id="time"
                         placeholder="Enter time period"
                         class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+                        required
                     />
                 </div>
                 <button
@@ -75,12 +78,19 @@
                         document.getElementById("principle").value;
                     const rate = document.getElementById("rate").value;
                     const time = document.getElementById("time").value;
+                    if (principle !== "" && rate !== "" && time !== "") {
+                        document.getElementById(
+                            "ans"
+                        ).innerText = `calculating...`;
+                    } else {
+                        alert("all fields are required");
+                    }
                     const response = await fetch(
                         `http://localhost:3000/get-si?principle=${principle}&rate=${rate}&time=${time}`
                     );
 
                     const finalAns = await response.text();
-                    console.log(finalAns);
+                    // console.log(finalAns);
                     document.getElementById(
                         "ans"
                     ).innerText = `Simple Interest: ${finalAns}`;
